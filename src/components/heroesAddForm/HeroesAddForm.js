@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
 import { fetchFilters } from '../../actions';
-import { heroesFetching, heroesFetchingError, heroAdd } from '../heroesList/heroesSlice';
+import { heroAdd } from '../heroesList/heroesSlice';
 
 // Задача для этого компонента:
 // Реализовать создание нового героя с введенными данными. Он должен попадать
@@ -56,11 +56,9 @@ const HeroesAddForm = () => {
 
 		if (!hero) return;
 
-		dispatch(heroesFetching());
 		request(`http://localhost:3001/heroes`, 'POST', JSON.stringify(hero))
 			.then(data => dispatch(heroAdd(data)))
 				// {id: 'e29016dd-ff22-40e8-abf9-fad735cd70af', name: 'test', description: 'tert', element: 'fire'}
-			.catch(() => dispatch(heroesFetchingError()))
 
 		// eslint-disable-next-line
 	}, [hero])

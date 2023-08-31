@@ -1,10 +1,9 @@
-import {useHttp} from '../../hooks/http.hook';
+import { useHttp } from '../../hooks/http.hook';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createSelector } from 'reselect';
+import { createSelector } from '@reduxjs/toolkit';
 
-import { fetchHeroes } from '../../actions';
-import { heroDelete, heroesFetchingError } from './heroesSlice';
+import { heroDelete, heroesFetchingError, fetchHeroes } from './heroesSlice';
 
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
@@ -31,11 +30,7 @@ const HeroesList = () => {
 	const { request } = useHttp();
 
 	useEffect(() => {
-		dispatch(fetchHeroes(request));
-		// dispatch(heroesFetching());
-		// request("http://localhost:3001/heroes")
-		// .then(data => dispatch(heroesFetched(data)))
-		// .catch(() => dispatch(heroesFetchingError()))
+		dispatch(fetchHeroes());
 		
 		// eslint-disable-next-line
 	}, []);
