@@ -23,18 +23,6 @@
       "name": "Четвертый герой",
       "description": "Самый сильный",
       "element": "earth"
-    },
-    {
-      "id": "f941bbf4-dbf3-4dcd-8d24-8fb5aa15c793",
-      "name": "sdafsdf asdf as",
-      "description": " asdf a",
-      "element": "fire"
-    },
-    {
-      "id": "e1b162f5-6ea6-44dd-ae1a-4822d1865cc2",
-      "name": "werqwer qwer vqw",
-      "description": " werqw erewq qr",
-      "element": "wind"
     }
   ],
   "filters": [

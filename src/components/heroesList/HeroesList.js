@@ -3,7 +3,9 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import { fetchHeroes, heroesFetchingError, heroDelete } from '../../actions';
+import { fetchHeroes } from '../../actions';
+import { heroDelete, heroesFetchingError } from './heroesSlice';
+
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
 
