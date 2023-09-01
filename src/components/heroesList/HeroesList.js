@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit';
 
-import { heroDelete, heroesFetchingError, fetchHeroes } from './heroesSlice';
+import { heroDelete, fetchHeroes } from './heroesSlice';
 
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
@@ -38,7 +38,7 @@ const HeroesList = () => {
 	const onDelete = (id) => {
 		request(`http://localhost:3001/heroes/${id}`, 'DELETE')
 			.then(() => dispatch(heroDelete(id)))
-			.catch(() => dispatch(heroesFetchingError()))
+			.catch(err => console.log(err))
 	}
 
 	if (heroesLoadingStatus === "loading") {

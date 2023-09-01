@@ -38,10 +38,4 @@ const heroesSlice = createSlice({
 const { reducer, actions } = heroesSlice;
 
 export default reducer;
-export const {
-	heroesFetching,
-	heroesFetched,
-	heroesFetchingError,
-	heroAdd,
-	heroDelete
-} = actions;
+export const { heroAdd, heroDelete } = actions;

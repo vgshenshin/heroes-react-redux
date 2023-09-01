@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { v4 as uuidv4 } from 'uuid';
 
-import { fetchFilters } from '../../actions';
+import { fetchFilters } from '../heroesFilters/filtersSlice';
 import { heroAdd } from '../heroesList/heroesSlice';
 
 // Задача для этого компонента:
@@ -29,7 +29,7 @@ const HeroesAddForm = () => {
 	const {request} = useHttp();
 
 	useEffect(() => {
-		dispatch(fetchFilters(request));
+		dispatch(fetchFilters());
 
         // eslint-disable-next-line
     }, []);
