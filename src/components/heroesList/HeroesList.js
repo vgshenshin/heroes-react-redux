@@ -1,9 +1,8 @@
 import { useHttp } from '../../hooks/http.hook';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createSelector } from '@reduxjs/toolkit';
 
-import { heroDelete, fetchHeroes } from './heroesSlice';
+import { heroDelete, fetchHeroes, filteredHeroesSelector } from './heroesSlice';
 
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
@@ -15,14 +14,7 @@ import Spinner from '../spinner/Spinner';
 
 const HeroesList = () => {
 
-	// мемоизирует значения в стейте, чтобы не было ререндера при получении одного и того же значения
-	// например фильтра 'all'
 
-	const filteredHeroesSelector = createSelector(
-		(state) => state.filters.activeFilter,
-		(state) => state.heroes.heroes,
-		(filter, heroes) => filter === 'all' ? heroes : heroes.filter(({element}) => element === filter)
-	)
 
 	const filteredHeroes = useSelector(filteredHeroesSelector);
 	const {  heroesLoadingStatus } = useSelector(state => state.heroes);

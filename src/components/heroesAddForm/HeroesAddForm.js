@@ -3,10 +3,11 @@ import {useHttp} from '../../hooks/http.hook';
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from 'react-redux';
+import store from "../../store";
 
 import { v4 as uuidv4 } from 'uuid';
 
-import { fetchFilters } from '../heroesFilters/filtersSlice';
+import { fetchFilters, selectAll } from '../heroesFilters/filtersSlice';
 import { heroAdd } from '../heroesList/heroesSlice';
 
 // Задача для этого компонента:
@@ -24,7 +25,8 @@ const HeroesAddForm = () => {
 
 	const { register, reset, formState: { errors, isSubmitSuccessful }, handleSubmit } = useForm();
 
-	const { filters } = useSelector(state => state.filters);
+	const {filtersLoadingStatus} = useSelector(state => state.filters);
+	const filters = selectAll(store.getState());
 	const dispatch = useDispatch();
 	const {request} = useHttp();
 
@@ -63,6 +65,23 @@ const HeroesAddForm = () => {
 		// eslint-disable-next-line
 	}, [hero])
 
+	const renderFilters = (filters, status) => {
+        if (status === "loading") {
+            return <option>Загрузка элементов</option>
+        } else if (status === "error") {
+            return <option>Ошибка загрузки</option>
+        }
+
+		if (filters && filters.length > 0 ) {
+            return filters.map(({name, text}) => {
+                // eslint-disable-next-line
+                if (name === 'all')  return;
+
+                return <option key={name} value={name}>{text}</option>
+            })
+        }
+	}
+
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="border p-4 shadow-lg rounded">
 			<div className="mb-3">
@@ -96,7 +115,7 @@ const HeroesAddForm = () => {
 				>
 					<option value="" >Я владею элементом...</option>
 					{
-						filters.slice(1).map(({name, text}, i) => <option key={i} value={name}>{text}</option>)
+						renderFilters(filters, filtersLoadingStatus)
 					}
 				</select>
 				{errors.element && <p style={{color:'red'}}> {errors.element.message}</p> }
