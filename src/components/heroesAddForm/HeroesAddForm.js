@@ -10,16 +10,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { fetchFilters, selectAll } from '../heroesFilters/filtersSlice';
 import { heroAdd } from '../heroesList/heroesSlice';
 
-// Задача для этого компонента:
-// Реализовать создание нового героя с введенными данными. Он должен попадать
-// в общее состояние и отображаться в списке + фильтроваться
-// Уникальный идентификатор персонажа можно сгенерировать через uiid
-// Усложненная задача:
-// Персонаж создается и в файле json при помощи метода POST
-// Дополнительно:
-// Элементы <option></option> желательно сформировать на базе
-// данных из фильтров
-
 const HeroesAddForm = () => {
 	const [ hero, setHero ] = useState(null);
 
@@ -58,8 +48,17 @@ const HeroesAddForm = () => {
 
 		if (!hero) return;
 
-		request(`http://localhost:3001/heroes`, 'POST', JSON.stringify(hero))
-			.then(data => dispatch(heroAdd(data)))
+		const formData = new FormData();
+
+		for (const key in hero) {
+		  if (hero.hasOwnProperty(key)) {
+			formData.append(key, hero[key]);
+		  }
+		}
+		
+		//  http://localhost:3001/heroes
+		request(`https://script.google.com/macros/s/AKfycbxWyBvNIWyMu00F0p4ThA7-NooEhr1_LFywTn90NCcf7oIg_q-q7Vb2JMqoMXc8ei0M5A/exec`, 'POST', formData)
+			.then(dispatch(heroAdd(hero)));
 				// {id: 'e29016dd-ff22-40e8-abf9-fad735cd70af', name: 'test', description: 'tert', element: 'fire'}
 
 		// eslint-disable-next-line

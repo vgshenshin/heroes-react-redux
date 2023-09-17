@@ -7,11 +7,6 @@ import { heroDelete, fetchHeroes, filteredHeroesSelector } from './heroesSlice';
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
 
-// Задача для этого компонента: (готово)
-// При клике на "крестик" идет удаление персонажа из общего состояния
-// Усложненная задача:
-// Удаление идет и с json файла при помощи метода DELETE
-
 const HeroesList = () => {
 
 
@@ -28,8 +23,10 @@ const HeroesList = () => {
 	}, []);
 
 	const onDelete = (id) => {
-		request(`http://localhost:3001/heroes/${id}`, 'DELETE')
-			.then(() => dispatch(heroDelete(id)))
+
+		//  http://localhost:3001/heroes/
+		request(`https://script.google.com/macros/s/AKfycbzGsVP7Bk_OXnyrJ_Xc2-p8WlK-h9ZeIAMOhXhcAlsHAgZb1tY2lEYLnljG2fuF0AUcjQ/exec?id=${id}`, 'POST')
+			.then(dispatch(heroDelete(id)))
 			.catch(err => console.log(err))
 	}
 

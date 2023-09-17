@@ -17,12 +17,6 @@
       "name": "Третий герой",
       "description": "Почти как аквамэн",
       "element": "water"
-    },
-    {
-      "id": "8044b7b8-a7fd-4570-89ec-93ac78c69fc4",
-      "name": "Четвертый герой",
-      "description": "Самый сильный",
-      "element": "earth"
     }
   ],
   "filters": [

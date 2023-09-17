@@ -12,9 +12,13 @@ export const fetchHeroes = createAsyncThunk(
 	'heroes/fetchHeroes',
 	async () => {
 		const { request } = useHttp();
-		return await request("http://localhost:3001/heroes")
+		
+		//  http://localhost:3001/heroes/
+		const data = await request("https://script.google.com/macros/s/AKfycbxWyBvNIWyMu00F0p4ThA7-NooEhr1_LFywTn90NCcf7oIg_q-q7Vb2JMqoMXc8ei0M5A/exec");
+		return await data.heroes;
 	}
 );
+
 
 const heroesSlice = createSlice({
 	name: 'heroes',
