@@ -18,7 +18,9 @@ export const fetchFilters = createAsyncThunk(
 	'filters/fetchFilters',
 	async () => {
 		const { request } = useHttp();
-		return await request("http://localhost:3001/filters")
+		const data = await request("https://script.google.com/macros/s/AKfycbwK3BgIKt80xgHdy8Y26UscI-dk-Yx0Ro2Hl2RmDHsbvJw6lJ1PeHeQlj8dODisusCsJA/exec");
+		return await data.filters;
+		// http://localhost:3001/filters
 	}
 );
 
