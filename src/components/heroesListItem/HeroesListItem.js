@@ -1,3 +1,5 @@
+import unknownHero from './../../assets/unknown_hero.webp';
+
 const HeroesListItem = ({onDelete, name, description, element}) => {
 
     let elementClassName;
@@ -22,7 +24,7 @@ const HeroesListItem = ({onDelete, name, description, element}) => {
     return (
         <li 
             className={`card flex-row mb-4 shadow-lg text-white ${elementClassName}`}>
-            <img src="http://www.stpaulsteinbach.org/wp-content/uploads/2014/09/unknown-hero.jpg" 
+            <img src={unknownHero} 
                  className="img-fluid w-25 d-inline" 
                  alt="unknown hero" 
                  style={{'objectFit': 'cover'}}/>
